@@ -21,5 +21,7 @@ func RestAPI() *mux.Router {
 	router := mux.NewRouter()
 	router.HandleFunc("/measurements", GetMeasurementsEndpoint).Methods("GET")
 	router.HandleFunc("/measurement/{id}", CreateMeasurementEndpoint).Methods("POST")
+	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./static/")))
+	http.Handle("/", router)
 	return router
 }

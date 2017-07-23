@@ -13,3 +13,10 @@
 # Project-local glide cache, RE: https://github.com/Masterminds/glide/issues/736
 .glide/
 .idea/
+
+logs/*
+!.gitkeep
+node_modules/
+bower_components/
+tmp
+.DS_Store
