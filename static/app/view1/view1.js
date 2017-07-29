@@ -10,14 +10,58 @@ angular.module('myApp.view1', ['ngRoute', 'chart.js'])
 }])
 
 .controller('View1Ctrl', function($scope, $http) {
-    $http.get('http://localhost:12345/measurements').
-    then(function(response) {
-        $scope.measuremnts = response.data;
+
+    $http({method: 'GET', url: 'http://localhost:12345/measurements'}).success(function(data) {
+        var measureTimes = new Array();
+        var temperature = new Array();
+        var ph = new Array();
+
+        angular.forEach(data, function(item) {
+            measureTimes.push(item.time);
+        });
+        $scope.measuremnts = measureTimes
+
+        angular.forEach(data, function(item) {
+            temperature.push(item.temperature.value);
+        });
+        $scope.temp = temperature
+
+        angular.forEach(data, function(item) {
+            ph.push(item.ph.value);
+        });
+        $scope.ph = ph
+
+        $scope.labels = measureTimes
+        $scope.series = ['Temp', 'PH'];
+        $scope.data = [temperature, ph]
+        $scope.onClick = function (points, evt) {
+            console.log(points, evt);
+        };
+        $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
+        $scope.options = {
+            scales: {
+                yAxes: [
+                    {
+                        id: 'y-axis-1',
+                        type: 'linear',
+                        display: true,
+                        position: 'left'
+                    },
+                    {
+                        id: 'y-axis-2',
+                        type: 'linear',
+                        display: true,
+                        position: 'right'
+                    }
+                ]
+            }
+        };
+
     });
-})
+});
 
 
-.controller("LineCtrl", function ($scope) {
+/*.controller("LineCtrl", function ($scope) {
 
     $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
     $scope.series = ['Series A', 'Series B'];
@@ -47,4 +91,4 @@ angular.module('myApp.view1', ['ngRoute', 'chart.js'])
             ]
         }
     };
-});
+});;*/
