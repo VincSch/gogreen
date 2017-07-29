@@ -1,6 +1,19 @@
 <p>Some green measurements</p>
 
-<canvas id="line" class="chart chart-line" chart-data="data"
-        chart-labels="labels" chart-series="series" chart-options="options"
-        chart-dataset-override="datasetOverride" chart-click="onClick">
-</canvas
+
+
+<div ng-controller="LineCtrl">
+    <canvas id="line" class="chart chart-line" chart-data="data"
+            chart-labels="labels" chart-series="series" chart-options="options"
+            chart-dataset-override="datasetOverride" chart-click="onClick">
+    </canvas>
+</div>
+
+<div ng-controller="View1Ctrl">
+    Your name:
+    <input type="text" ng-model="username">
+    <button ng-click='sayHello()'>greet</button>
+    <hr>
+    {{measuremnts}}
+</div>
+

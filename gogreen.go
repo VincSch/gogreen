@@ -6,6 +6,7 @@ import (
 	"time"
 	"fmt"
 	"encoding/json"
+	"github.com/rs/cors"
 )
 
 var measumrents []Measurement
@@ -32,5 +33,6 @@ func main() {
 		fmt.Println(string(asJson))
 	}
 
-	log.Fatal(http.ListenAndServe(":12345", RestAPI()))
+	handler := cors.Default().Handler(RestAPI())
+	log.Fatal(http.ListenAndServe(":12345", handler))
 }

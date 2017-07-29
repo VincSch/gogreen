@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute', 'angular-chart.js'])
+angular.module('myApp.view1', ['ngRoute', 'chart.js'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view1', {
@@ -15,6 +15,7 @@ angular.module('myApp.view1', ['ngRoute', 'angular-chart.js'])
         $scope.measuremnts = response.data;
     });
 })
+
 
 .controller("LineCtrl", function ($scope) {
 

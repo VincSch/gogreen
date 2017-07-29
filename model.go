@@ -13,7 +13,7 @@ type Ph struct {
 }
 
 type Measurement struct {
-	Time  time.Time
+	Time  time.Time			 `json:"time,omitempty"`
 	Temperature *Temperature `json:"temperature,omitempty"`
 	Ph          *Ph          `json:"ph,omitempty"`
 }
